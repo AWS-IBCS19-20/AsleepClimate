@@ -10,7 +10,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class NumberGame extends JFrame implements ActionListener {
+public class NumberGame extends JFrame implements ActionListener, ItemListener {
   JButton zero;
   JButton first;
   JButton two;
@@ -22,9 +22,18 @@ public class NumberGame extends JFrame implements ActionListener {
   JButton eight;
   JButton nine;
 
+  Checkbox plus;
+  Checkbox minus;
+
+  JLabel addition;
+  JLabel subtraction;
+  JLabel equals;
+
   Boolean empty;
+  Boolean empty2;
 
   JTextArea FirstOne;
+  JTextArea SecondOne;
 
   public NumberGame () {
     setLayout(null);
@@ -33,6 +42,11 @@ public class NumberGame extends JFrame implements ActionListener {
     FirstOne.setBounds(150, 400, 50, 50);
     add(FirstOne);
     FirstOne.setBackground(Color.YELLOW);
+
+    SecondOne = new JTextArea();
+    SecondOne.setBounds(350, 400, 50, 50);
+    add(SecondOne);
+    SecondOne.setBackground(Color.YELLOW);
 
     zero = new JButton("0");
     zero.setBounds(10, 100, 60, 60);
@@ -84,6 +98,30 @@ public class NumberGame extends JFrame implements ActionListener {
     add(nine);
     nine.addActionListener(this);
 
+    plus = new Checkbox("+");
+    plus.setBounds(250, 300, 60, 60);
+    add(plus);
+    plus.addItemListener(this);
+
+    minus = new Checkbox("-");
+    minus.setBounds(350, 300, 60, 60);
+    add(minus);
+    minus.addItemListener(this);
+
+    addition = new JLabel("+");
+    addition.setBounds(250, 400, 40, 40);
+    add(addition);
+    addition.setVisible(false);
+
+    subtraction = new JLabel("-");
+    subtraction.setBounds(250, 400, 40, 40);
+    add(subtraction);
+    subtraction.setVisible(false);
+
+    equals = new JLabel("=");
+    equals.setBounds(450, 400, 60, 60);
+    add(equals);
+
     addWindowListener(new WindowAdapter() {
         public void windowClosing(WindowEvent e) {
          System.exit(0);
@@ -92,10 +130,14 @@ public class NumberGame extends JFrame implements ActionListener {
 
   }
 
-  public void Check() {
+  public void Check() { //this is a method to see if their is anything already in the textareas
     empty = false;
+    empty2 = false;
     if(FirstOne.getText().trim().isEmpty()) {
       empty = true;
+    }
+    if(SecondOne.getText().trim().isEmpty()){
+      empty2 = true;
     }
   }
 
@@ -104,8 +146,11 @@ public class NumberGame extends JFrame implements ActionListener {
 
     if (src == zero) {
       Check();
-      if (empty == true) {
+      if (empty == true) { //this is a repeated line of code because it deals with things within actionevent, what is printed in text areas
       FirstOne.append("0");
+      }
+      else if (empty2 == true) {
+        SecondOne.append("0");
       }
     }
 
@@ -114,12 +159,18 @@ public class NumberGame extends JFrame implements ActionListener {
       if (empty == true) {
       FirstOne.append("1");
       }
+      else if (empty2 == true) {
+        SecondOne.append("1");
+      }
     }
 
     if (src == two) {
       Check();
       if (empty == true) {
       FirstOne.append("2");
+      }
+      else if (empty2 == true) {
+        SecondOne.append("2");
       }
     }
 
@@ -128,12 +179,18 @@ public class NumberGame extends JFrame implements ActionListener {
       if (empty == true) {
       FirstOne.append("3");
       }
+      else if (empty2 == true) {
+        SecondOne.append("3");
+      }
     }
 
     if (src == four) {
       Check();
       if (empty == true) {
       FirstOne.append("4");
+      }
+      else if (empty2 == true) {
+        SecondOne.append("4");
       }
     }
 
@@ -142,6 +199,9 @@ public class NumberGame extends JFrame implements ActionListener {
       if (empty == true) {
       FirstOne.append("5");
       }
+      else if (empty2 == true) {
+        SecondOne.append("5");
+      }
     }
 
     if (src == six) {
@@ -149,12 +209,18 @@ public class NumberGame extends JFrame implements ActionListener {
       if (empty == true) {
       FirstOne.append("6");
       }
+      else if (empty2 == true) {
+        SecondOne.append("6");
+      }
     }
 
     if (src == seven) {
       Check();
       if (empty == true) {
-      FirstOne.append("8");
+      FirstOne.append("7");
+      }
+      else if (empty2 == true) {
+        SecondOne.append("7");
       }
     }
 
@@ -163,12 +229,42 @@ public class NumberGame extends JFrame implements ActionListener {
       if (empty == true) {
       FirstOne.append("8");
       }
+      else if (empty2 == true) {
+        SecondOne.append("8");
+      }
     }
 
     if (src == nine) {
       Check();
       if (empty == true) {
       FirstOne.append("9");
+      }
+      else if (empty2 == true) {
+        SecondOne.append("9");
+      }
+    }
+
+  }
+
+  public void itemStateChanged(ItemEvent e) {
+
+    if(e.getSource() == plus) {
+      boolean checked = plus.getState();
+      if(checked == true) {
+        addition.setVisible(true);
+      }
+      else {
+        addition.setVisible(false);
+      }
+    }
+
+    if(e.getSource() == minus) {
+      boolean checked = minus.getState();
+      if(checked == true) {
+        subtraction.setVisible(true);
+      }
+      else {
+        subtraction.setVisible(false);
       }
     }
   }

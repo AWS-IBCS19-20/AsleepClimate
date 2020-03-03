@@ -9,10 +9,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
+import java.io.File;
+import java.io.*;
 
-public class NumberGame extends JFrame implements ActionListener, ItemListener {
+public class NumberGame extends JFrame implements ActionListener, ItemListener { //extends different classes so that I don't need to write the code for it
   JButton zero;
-  JButton first;
+  JButton first; //declare them here so these are visible to the entire program
   JButton two;
   JButton three;
   JButton four;
@@ -21,6 +23,8 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   JButton seven;
   JButton eight;
   JButton nine;
+  JButton submit;
+  JButton clear;
 
   Checkbox plus;
   Checkbox minus;
@@ -34,9 +38,28 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
 
   JTextArea FirstOne;
   JTextArea SecondOne;
+  JTextArea ThirdOne;
+  JTextArea CheckOne;
+
+  File checking;
+  ArrayList math;
 
   public NumberGame () {
     setLayout(null);
+
+    math = new ArrayList();
+   int count = 0;
+   try { //try-catch is used to control for what is outside of control
+     checking = new File("math.txt");
+     Scanner sc = new Scanner(checking);
+
+     while (sc.hasNext()) { //checks to see if our file is empty
+       math.add(sc.next());
+     }
+   }
+   catch (FileNotFoundException e) {
+     e.printStackTrace();
+   }
 
     FirstOne = new JTextArea();
     FirstOne.setBounds(150, 400, 50, 50);
@@ -47,6 +70,16 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     SecondOne.setBounds(350, 400, 50, 50);
     add(SecondOne);
     SecondOne.setBackground(Color.YELLOW);
+
+    ThirdOne = new JTextArea();
+    ThirdOne.setBounds(500, 400, 50, 50);
+    add(ThirdOne);
+    ThirdOne.setBackground(Color.YELLOW);
+
+    CheckOne = new JTextArea();
+    CheckOne.setBounds(200, 200, 50, 50);
+    add(CheckOne);
+    CheckOne.setVisible(false);
 
     zero = new JButton("0");
     zero.setBounds(10, 100, 60, 60);
@@ -98,6 +131,17 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     add(nine);
     nine.addActionListener(this);
 
+    submit = new JButton("Click when you are done!");
+    submit.setBounds(350, 450, 200, 20);
+    add(submit);
+    submit.setBackground(Color.GREEN);
+    submit.addActionListener(this);
+
+    clear = new JButton("Clear");
+    clear.setBounds(200, 450, 100, 20);
+    add(clear);
+    clear.addActionListener(this);
+
     plus = new Checkbox("+");
     plus.setBounds(250, 300, 60, 60);
     add(plus);
@@ -141,26 +185,41 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     }
   }
 
+  public void Answer() {
+    if(math.contains(CheckOne.getText())) {
+      System.out.println("Correct");
+    }
+    else {
+      System.out.println("Try Again!");
+    }
+  }
+
   public void actionPerformed(ActionEvent e) {
     Object src = e.getSource();
 
     if (src == zero) {
       Check();
-      if (empty == true) { //this is a repeated line of code because it deals with things within actionevent, what is printed in text areas
+      if (empty == true) {
       FirstOne.append("0");
       }
       else if (empty2 == true) {
         SecondOne.append("0");
       }
+      else {
+        ThirdOne.append("0");
+      }
     }
 
     if (src == first) {
       Check();
-      if (empty == true) {
+      if (empty == true) { //this is a repeated line of code because it deals with things within actionevent, what is printed in text areas
       FirstOne.append("1");
       }
       else if (empty2 == true) {
         SecondOne.append("1");
+      }
+      else {
+        ThirdOne.append("1");
       }
     }
 
@@ -172,6 +231,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       else if (empty2 == true) {
         SecondOne.append("2");
       }
+      else {
+        ThirdOne.append("2");
+      }
     }
 
     if (src == three) {
@@ -181,6 +243,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       }
       else if (empty2 == true) {
         SecondOne.append("3");
+      }
+      else {
+        ThirdOne.append("3");
       }
     }
 
@@ -192,6 +257,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       else if (empty2 == true) {
         SecondOne.append("4");
       }
+      else {
+        ThirdOne.append("4");
+      }
     }
 
     if (src == five) {
@@ -201,6 +269,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       }
       else if (empty2 == true) {
         SecondOne.append("5");
+      }
+      else {
+        ThirdOne.append("5");
       }
     }
 
@@ -212,6 +283,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       else if (empty2 == true) {
         SecondOne.append("6");
       }
+      else {
+        ThirdOne.append("6");
+      }
     }
 
     if (src == seven) {
@@ -221,6 +295,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       }
       else if (empty2 == true) {
         SecondOne.append("7");
+      }
+      else {
+        ThirdOne.append("7");
       }
     }
 
@@ -232,6 +309,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       else if (empty2 == true) {
         SecondOne.append("8");
       }
+      else {
+        ThirdOne.append("8");
+      }
     }
 
     if (src == nine) {
@@ -242,6 +322,21 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       else if (empty2 == true) {
         SecondOne.append("9");
       }
+      else {
+        ThirdOne.append("9");
+      }
+    }
+
+    if(src == submit) {
+      CheckOne.append(FirstOne.getText() + "+" + SecondOne.getText() + "=" + ThirdOne.getText());
+      Answer();
+    }
+
+    if(src == clear) {
+      FirstOne.setText(null);
+      SecondOne.setText(null);
+      ThirdOne.setText(null);
+      CheckOne.setText(null);
     }
 
   }
@@ -270,7 +365,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   }
 
   public static void main(String[] args) {
-    NumberGame myWindow = new NumberGame(); //creates a new frame that does the class Restaurant
+    NumberGame myWindow = new NumberGame();
     myWindow.setSize(800,700);
     myWindow.setVisible(true);
     myWindow.setTitle("Number Game");

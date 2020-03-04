@@ -61,7 +61,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
      e.printStackTrace();
    }
 
-    FirstOne = new JTextArea();
+    FirstOne = new JTextArea(); //constructor method for different componetns
     FirstOne.setBounds(150, 400, 50, 50);
     add(FirstOne);
     FirstOne.setBackground(Color.YELLOW);
@@ -175,19 +175,20 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   }
 
   public void Check() { //this is a method to see if their is anything already in the textareas
-    empty = false;
+    empty = false; //I set the booleans false at each iteration of the method to keep the info the program has up to date
     empty2 = false;
     if(FirstOne.getText().trim().isEmpty()) {
       empty = true;
     }
     if(SecondOne.getText().trim().isEmpty()){
       empty2 = true;
-    }
+    } //didn't do this for the ThirdOne because the ThirdOne can have more than one digit
   }
 
-  public void Answer() {
-    if(math.contains(CheckOne.getText())) {
-      System.out.println("Correct");
+  public void Answer() { //this method is used with the submit button
+    System.out.println(CheckOne.getText()); //print the equation for calrity, non essential
+    if(math.contains(CheckOne.getText())) { //since the file should have all the correct answers, if the equation is in the math file then it is correct
+      System.out.println("Good Job!");
     }
     else {
       System.out.println("Try Again!");
@@ -200,13 +201,13 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     if (src == zero) {
       Check();
       if (empty == true) {
-      FirstOne.append("0");
+      FirstOne.append("0"); //writes the number into the first text area
       }
       else if (empty2 == true) {
-        SecondOne.append("0");
+        SecondOne.append("0"); //writes the number into the second text area
       }
       else {
-        ThirdOne.append("0");
+        ThirdOne.append("0"); //writes the number into the third text area
       }
     }
 
@@ -328,7 +329,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     }
 
     if(src == submit) {
-      CheckOne.append(FirstOne.getText() + "+" + SecondOne.getText() + "=" + ThirdOne.getText());
+      CheckOne.append(FirstOne.getText() + "+" + SecondOne.getText() + "=" + ThirdOne.getText()); //as 0f right now only the addition side works
       Answer();
     }
 
@@ -366,7 +367,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
 
   public static void main(String[] args) {
     NumberGame myWindow = new NumberGame();
-    myWindow.setSize(800,700);
+    myWindow.setSize(700,500);
     myWindow.setVisible(true);
     myWindow.setTitle("Number Game");
   }

@@ -44,8 +44,14 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   File checking;
   ArrayList math;
 
+  ImageIcon truck = new ImageIcon("truck.jpg");
+
   public NumberGame () {
     setLayout(null);
+
+    JLabel truck2 = new JLabel(truck);
+    truck2.setBounds(100, 200, 100, 100);
+    add(truck2);
 
     math = new ArrayList();
    int count = 0;
@@ -65,16 +71,19 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     FirstOne.setBounds(150, 400, 50, 50);
     add(FirstOne);
     FirstOne.setBackground(Color.YELLOW);
+    FirstOne.setEditable(false);
 
     SecondOne = new JTextArea();
     SecondOne.setBounds(350, 400, 50, 50);
     add(SecondOne);
     SecondOne.setBackground(Color.YELLOW);
+    SecondOne.setEditable(false);
 
     ThirdOne = new JTextArea();
     ThirdOne.setBounds(500, 400, 50, 50);
     add(ThirdOne);
     ThirdOne.setBackground(Color.YELLOW);
+    ThirdOne.setEditable(false);
 
     CheckOne = new JTextArea();
     CheckOne.setBounds(200, 200, 50, 50);
@@ -90,6 +99,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     first.setBounds(70, 100, 60, 60);
     add(first);
     first.addActionListener(this);
+    first.setBackground(Color.BLUE);
 
     two = new JButton("2");
     two.setBounds(120, 100, 60, 60);
@@ -173,6 +183,10 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     } );
 
   }
+
+//  public void paint(Graphics g) {
+  //    g.drawImage(truck, 100, 100, null);
+//  }
 
   public void Check() { //this is a method to see if their is anything already in the textareas
     empty = false; //I set the booleans false at each iteration of the method to keep the info the program has up to date

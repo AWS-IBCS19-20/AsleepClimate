@@ -12,7 +12,7 @@ import java.util.*;
 import java.io.File;
 import java.io.*;
 
-public class NumberGame extends JFrame implements ActionListener, ItemListener { //extends different classes so that I don't need to write the code for it
+public class NumberGame extends JFrame implements ActionListener { //extends different classes so that I don't need to write the code for it
   JButton zero;
   JButton first; //declare them here so these are visible to the entire program
   JButton two;
@@ -26,11 +26,7 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   JButton submit;
   JButton clear;
 
-  Checkbox plus;
-  Checkbox minus;
-
   JLabel addition;
-  JLabel subtraction;
   JLabel equals;
 
   Boolean empty;
@@ -45,13 +41,79 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
   ArrayList math;
 
   ImageIcon truck = new ImageIcon("truck.jpg");
+  JLabel truck2;
+
+  ImageIcon dino = new ImageIcon("two.jpg");
+  JLabel dino2;
+
+  ImageIcon third = new ImageIcon("three.jpg");
+  JLabel bear;
+
+  ImageIcon fourth = new ImageIcon("four.jpg");
+  JLabel owl;
+
+  ImageIcon fifth = new ImageIcon("five.jpg");
+  JLabel fruit;
+
+  ImageIcon sixth = new ImageIcon("six.jpg");
+  JLabel birds;
+
+  ImageIcon seventh = new ImageIcon("seven.jpg");
+  JLabel drawf;
+
+  ImageIcon eigth = new ImageIcon("eight.jpg");
+  JLabel flower;
+
+  ImageIcon ninth = new ImageIcon("nine.jpg");
+  JLabel fish;
 
   public NumberGame () {
     setLayout(null);
 
-    JLabel truck2 = new JLabel(truck);
-    truck2.setBounds(100, 200, 100, 100);
+    truck2 = new JLabel(truck);
+    truck2.setBounds(50, 150, 120, 120);
     add(truck2);
+    truck2.setVisible(false);
+
+    dino2 = new JLabel(dino);
+    dino2.setBounds(150, 150, 120, 120);
+    add(dino2);
+    dino2.setVisible(false);
+
+    bear = new JLabel(third);
+    bear.setBounds(240, 150, 120, 120);
+    add(bear);
+    bear.setVisible(false);
+
+    owl = new JLabel(fourth);
+    owl.setBounds(310, 150, 120, 120);
+    add(owl);
+    owl.setVisible(false);
+
+    fruit = new JLabel(fifth);
+    fruit.setBounds(400, 150, 120, 120);
+    add(fruit);
+    fruit.setVisible(false);
+
+    birds = new JLabel(sixth);
+    birds.setBounds(510, 150, 120, 120);
+    add(birds);
+    birds.setVisible(false);
+
+    drawf = new JLabel(seventh);
+    drawf.setBounds(70, 250, 120, 120);
+    add(drawf);
+    drawf.setVisible(false);
+
+    flower = new JLabel(eigth);
+    flower.setBounds(250, 250, 120, 120);
+    add(flower);
+    flower.setVisible(false);
+
+    fish = new JLabel(ninth);
+    fish.setBounds(400, 250, 120, 120);
+    add(fish);
+    fish.setVisible(false);
 
     math = new ArrayList();
    int count = 0;
@@ -152,25 +214,9 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     add(clear);
     clear.addActionListener(this);
 
-    plus = new Checkbox("+");
-    plus.setBounds(250, 300, 60, 60);
-    add(plus);
-    plus.addItemListener(this);
-
-    minus = new Checkbox("-");
-    minus.setBounds(350, 300, 60, 60);
-    add(minus);
-    minus.addItemListener(this);
-
     addition = new JLabel("+");
     addition.setBounds(250, 400, 40, 40);
     add(addition);
-    addition.setVisible(false);
-
-    subtraction = new JLabel("-");
-    subtraction.setBounds(250, 400, 40, 40);
-    add(subtraction);
-    subtraction.setVisible(false);
 
     equals = new JLabel("=");
     equals.setBounds(450, 400, 60, 60);
@@ -183,10 +229,6 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
     } );
 
   }
-
-//  public void paint(Graphics g) {
-  //    g.drawImage(truck, 100, 100, null);
-//  }
 
   public void Check() { //this is a method to see if their is anything already in the textareas
     empty = false; //I set the booleans false at each iteration of the method to keep the info the program has up to date
@@ -229,9 +271,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) { //this is a repeated line of code because it deals with things within actionevent, what is printed in text areas
       FirstOne.append("1");
+      truck2.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("1");
+        truck2.setVisible(true);
       }
       else {
         ThirdOne.append("1");
@@ -242,9 +286,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("2");
+      dino2.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("2");
+        dino2.setVisible(true);
       }
       else {
         ThirdOne.append("2");
@@ -255,9 +301,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("3");
+      bear.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("3");
+        bear.setVisible(true);
       }
       else {
         ThirdOne.append("3");
@@ -268,9 +316,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("4");
+      owl.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("4");
+        owl.setVisible(true);
       }
       else {
         ThirdOne.append("4");
@@ -281,9 +331,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("5");
+      fruit.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("5");
+        fruit.setVisible(true);
       }
       else {
         ThirdOne.append("5");
@@ -294,9 +346,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("6");
+      birds.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("6");
+        birds.setVisible(true);
       }
       else {
         ThirdOne.append("6");
@@ -307,9 +361,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("7");
+      drawf.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("7");
+        drawf.setVisible(true);
       }
       else {
         ThirdOne.append("7");
@@ -320,9 +376,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("8");
+      flower.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("8");
+        flower.setVisible(true);
       }
       else {
         ThirdOne.append("8");
@@ -333,9 +391,11 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       Check();
       if (empty == true) {
       FirstOne.append("9");
+      fish.setVisible(true);
       }
       else if (empty2 == true) {
         SecondOne.append("9");
+        fish.setVisible(true);
       }
       else {
         ThirdOne.append("9");
@@ -352,31 +412,17 @@ public class NumberGame extends JFrame implements ActionListener, ItemListener {
       SecondOne.setText(null);
       ThirdOne.setText(null);
       CheckOne.setText(null);
+      truck2.setVisible(false);
+      dino2.setVisible(false);
+      bear.setVisible(false);
+      owl.setVisible(false);
+      fruit.setVisible(false);
+      birds.setVisible(false);
+      drawf.setVisible(false);
+      flower.setVisible(false);
+      fish.setVisible(false);
     }
 
-  }
-
-  public void itemStateChanged(ItemEvent e) {
-
-    if(e.getSource() == plus) {
-      boolean checked = plus.getState();
-      if(checked == true) {
-        addition.setVisible(true);
-      }
-      else {
-        addition.setVisible(false);
-      }
-    }
-
-    if(e.getSource() == minus) {
-      boolean checked = minus.getState();
-      if(checked == true) {
-        subtraction.setVisible(true);
-      }
-      else {
-        subtraction.setVisible(false);
-      }
-    }
   }
 
   public static void main(String[] args) {

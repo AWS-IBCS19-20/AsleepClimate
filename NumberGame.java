@@ -231,12 +231,12 @@ public class NumberGame extends JFrame implements ActionListener { //extends dif
   }
 
   public void Check() { //this is a method to see if their is anything already in the textareas
-    empty = false; //I set the booleans false at each iteration of the method to keep the info the program has up to date
+    empty = false; //I set the booleans false at each iteration of the method to keep the info the program has updated
     empty2 = false;
-    if(FirstOne.getText().trim().isEmpty()) {
+    if(FirstOne.getText().isEmpty()) {
       empty = true;
     }
-    if(SecondOne.getText().trim().isEmpty()){
+    if(SecondOne.getText().isEmpty()){
       empty2 = true;
     } //didn't do this for the ThirdOne because the ThirdOne can have more than one digit
   }
